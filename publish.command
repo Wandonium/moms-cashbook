@@ -7,16 +7,14 @@ gh auth status
 owner="$(gh api user --jq .login)"
 repo="$owner/moms-cashbook"
 if ! git remote get-url origin >/dev/null 2>&1; then
-  gh repo create "$repo" --private --source=. --remote=origin --push
+  gh repo create "$repo" --public --source=. --remote=origin --push
 else
   git push -u origin main
 fi
 visibility="$(gh api "repos/$repo" --jq .visibility)"
-if [[ "$visibility" != private ]]; then
-  print 'Repository must be private; stopping.'
-  exit 1
+if [[ "$visibility" != public ]]; then
+  gh repo edit "$repo" --visibility public --accept-visibility-change-consequences
 fi
-# A paid GitHub plan is required for Pages on a private personal repository.
 if ! gh api "repos/$repo/pages" >/dev/null 2>&1; then
   gh api --method POST "repos/$repo/pages" -f build_type=workflow >/dev/null
 else

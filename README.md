@@ -6,8 +6,8 @@ this device. Clearing site data removes history; Download backup / Restore
 backup transfers it to an empty browser. CSV exports are also available.
 Use sample payments for this practice version. Files are prefixed TEST_.
 
-The repository is intended to be private. The published GitHub Pages app and its
-sanitized template are public; no original financial records are included.
+The repository and published GitHub Pages app are public. The template is
+sanitized; no original financial records are included.
 
 ## Run and verify
 
@@ -18,8 +18,8 @@ must survive closing the browser.
 
 ## Publish
 
-Requires a GitHub plan that supports Pages from private repositories (for a
-personal account, GitHub Pro or higher). Configure Pages to use GitHub Actions.
+Uses a public repository so Pages is available on GitHub Free. Configure Pages
+to use GitHub Actions.
 Only `site/` is published. The workflow runs tests before deployment.
 
 Voucher XML is patched directly to retain the approved form's existing styles,

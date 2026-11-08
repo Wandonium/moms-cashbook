@@ -12,7 +12,10 @@ Publication is blocked in the current execution session:
 - Local preview cannot bind its port: Operation not permitted. Browser flow and
   native Excel visual verification of this new implementation remain pending.
 
-No GitHub repository, Pages deployment or public URL has been created.
+The owner created `Wandonium/moms-cashbook` after the initial attempt. The owner
+now authorizes making it public for Pages. The current visibility change attempt
+also failed because this session cannot connect to api.github.com. Browser access
+is unavailable, so publication remains unverified.
 
 To publish from an unrestricted Terminal with network access:
 
@@ -21,12 +24,10 @@ cd /Users/mac/Documents/moms-projects/vouchers-browser
 zsh publish.command
 ```
 
-The script checks authentication, creates a private `moms-cashbook` repository
-under the authenticated GitHub account, pushes main, configures Pages to use
-Actions and starts deployment. If private-repository Pages is unavailable on
-that account's plan, it stops without making the repository public. GitHub Pro
-or another eligible plan is required. Check the printed workflow's result before
-sharing the URL; the initial URL output alone does not verify deployment.
+The script checks authentication, creates the repository if needed, pushes main,
+changes the repository to public as authorized, configures Pages to use Actions,
+and starts deployment. Check the workflow result before sharing the URL; the
+initial URL output alone does not verify deployment.
 
 The old local trial remains a separate deployment. Its LaunchAgent was disabled,
 while unloading its existing process and removing the Funnel were blocked by
