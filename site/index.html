@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cashbook · Payment vouchers</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script></head>
+<body>
+<header><a href="./" class="brand"><span class="brand-icon" aria-hidden="true">▤</span> Cashbook</a><span id="location" class="local">Saved in this browser</span></header>
+<main>
+<p id="trial-note" class="trial-note"><strong>Practice cashbook</strong> — Try a sample payment. Everything saved here is for testing. History stays in this browser on this device. Download a backup to keep it safe; clearing browser data removes it.</p>
+<div class="intro"><p class="eyebrow">PAYMENT VOUCHERS</p><h1>A voucher in a few simple steps.</h1><p>Enter the payment, check the details, then download your voucher.</p></div>
+<nav aria-label="Voucher steps"><span id="step1" class="active">1 <b>Enter payment</b></span><span id="step2">2 <b>Check &amp; download</b></span></nav>
+<p id="error" class="error" role="alert" hidden></p>
+<div class="layout">
+<section class="card" id="entry"><h2>New payment</h2><p class="muted">Start with the details of this payment.</p>
+<form id="payment-form">
+<label>Who are we paying?<input name="payee_name" id="payee" required maxlength="60" autocomplete="off" list="payees" placeholder="Payee’s full name"><datalist id="payees"></datalist></label>
+<label>What is the payment for?<input name="item" required maxlength="30" list="categories" placeholder="For example, Electricity"><datalist id="categories"><option>Electricity</option><option>Rent</option><option>School fees</option><option>Transfer</option><option>Per diem</option><option>Stationery</option></datalist></label>
+<label>Payment description<textarea name="particulars" required maxlength="220" rows="3" placeholder="For example, Electricity bill for October 2026"></textarea><span class="hint">This wording will appear on the voucher. Keep it brief.</span></label>
+<div class="two"><label>Amount<input name="amount" required type="number" inputmode="decimal" min="0.01" max="999999999.99" step="0.01" placeholder="0.00"></label><label>Currency<select name="currency"><option value="EUR">EUR — Euro</option><option value="USD">USD — US dollar</option><option value="KES">KES — Kenya shilling</option></select></label></div>
+<label>Payment date<input name="date" required type="date"></label>
+<details id="office"><summary>Office details <span id="office-status">Set up once</span></summary><p class="hint" id="setup-note">Sample office details are filled in for practice. Check the allocation, expenditure, financial year and exchange rates before saving.</p>
+<div class="two"><label>Department voucher no.<input name="dept_vch_no" required inputmode="numeric" pattern="[0-9]{1,6}"></label><label>Cashbook voucher no.<input name="cashbook_vch_no" required inputmode="numeric" pattern="[0-9]{1,6}"></label></div>
+<div class="two"><label>Allocation (KES)<input name="allocation" required type="number" min="0" step="0.01"></label><label>Prior expenditure (KES)<input name="expenditure" required type="number" min="0" step="0.01"></label></div>
+<p class="hint">After saving, prior expenditure increases by this payment. Check it if payments were made elsewhere or you change the account.</p>
+<div class="two"><label>1 EUR in KES<input name="eur_rate" required type="number" min="0.01" step="0.01"></label><label>1 USD in KES<input name="usd_rate" required type="number" min="0.01" step="0.01"></label></div>
+<div class="two"><label>Item number<input name="item_no" required maxlength="25"></label><label>Account number<input name="accnt_no" required maxlength="50"></label></div>
+<label>Vote<input name="vote" required maxlength="40"></label>
+<div class="two"><label>Head / subhead<input name="head/subhead" required maxlength="30"></label><label>Station<input name="station" required maxlength="15"></label></div>
+<label>Financial year<input name="financial year" required maxlength="20" placeholder="For example, 2026/2027"></label>
+</details>
+<button class="primary" type="submit">Check payment <span aria-hidden="true">→</span></button>
+</form></section>
+<section class="card" id="review" hidden tabindex="-1"><p class="eyebrow">CHECK BEFORE SAVING</p><h2>Does everything look right?</h2><dl id="review-details"></dl><details><summary>Accounting details</summary><dl id="review-office"></dl></details><label class="check"><input type="checkbox" id="confirmed">I have checked the payment, office details and exchange rate.</label><div class="actions"><button id="back" type="button" class="secondary">Go back &amp; edit</button><button id="save" type="button" class="primary">Save &amp; download voucher</button></div><p class="hint">Downloads an Excel voucher in the approved F.O.20 format.</p></section>
+<section class="card" id="success" hidden tabindex="-1"><div class="done-icon" aria-hidden="true">✓</div><h2>Your voucher is ready.</h2><p id="success-name"></p><a id="download" class="primary" href="#">Download Excel voucher</a><p class="hint">Open the downloaded file in Excel to view or print the voucher.</p><button id="another" class="secondary" type="button">Make another voucher</button></section>
+<aside><section class="side-note"><span class="paper-icon" aria-hidden="true">▤</span><h2>Your familiar voucher.</h2><p>Same F.O.20 layout, with your payment details filled in.</p><p>Saved vouchers stay in this browser so you can download them again. Nothing you enter is sent to a server. Use sample payments for this trial.</p></section></aside>
+</div>
+<section class="saved"><div class="section-title"><div><h2>Saved vouchers</h2><p class="muted">Practice payments saved on this device.</p></div><a href="#" id="export-csv" class="text-link">Download cashbook (CSV) ↓</a></div><div class="actions backup-actions"><button type="button" class="secondary" id="backup">Download backup</button><label class="secondary restore-label">Restore backup<input id="restore" type="file" accept=".json,application/json"></label></div><p class="hint">Backups contain your payment details. Store them somewhere private. Restore works in a browser with no saved vouchers.</p><p id="storage-status" class="hint" role="status"></p><div id="history"><p class="empty">Your first voucher will appear here.</p></div></section>
+<footer>Cashbook &nbsp;·&nbsp; Payment vouchers made simple</footer>
+</main></body></html>
